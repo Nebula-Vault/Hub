@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nebula Hub — Microsoft Store Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://raw.githubusercontent.com/Nebula-Vault/Hub/refs/heads/main/Icon.png" type="image/png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      z-index: 100;
+      background: rgba(0,0,0,0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #7b2ff7, #f107a3, #2bd2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+    }
+    header nav a:hover { color: #ff6fd8; }
+
+    main {
+      padding: 140px 40px 60px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #ff6fd8, #7b2ff7, #2bd2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    ul.version-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.version-list li {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .version-btn {
+      display: block;
+      width: 100%;
+      padding: 20px;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      background: rgba(255,255,255,0.05);
+      color: #2bd2ff;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      text-decoration: none;
+    }
+    .version-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(255,111,216,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+    .version-btn span {
+      display: block;
+      font-size: 0.9rem;
+      color: white;
+      opacity: 0.85;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 60px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+
+  <header>
+    <h1>Nebula Hub</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Microsoft Store Apps</h2>
+    <ul class="version-list">
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=11bq3Smv7CA1XtwiXrgA5ITguoN_tJKYi" target="_blank" class="version-btn">
+          ChatGPT
+          <span>Version idk — Size: 265,755 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1SASKobEnnz8EG3UR9F9BbRMvtOefGWMK" target="_blank" class="version-btn">
+          TikTok
+          <span>Version idk — Size: 718 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1jorvEiqruttEnZDTrvYKkjSjABRiiwKC" target="_blank" class="version-btn">
+          SeelenUI
+          <span>Version idk — Size: 33,129 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1pPCtG6odZCHFLgnBfoQuHr_o7wmq3NWE" target="_blank" class="version-btn">
+          Roblox
+          <span>Version idk — Size: 170,590 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1hJgrNLEbx3wRi_Uqv4p8JZ6qqte572ph" target="_blank" class="version-btn">
+          TranslucentTB
+          <span>Version idk — Size: 4,035 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1_leWIV-6DWfAeO75313zUy4HhvgXndGW" target="_blank" class="version-btn">
+          Lively Wallpaper
+          <span>Version idk — Size: 328,409 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1IIVqc-BN2S71CI-v4zvpKfDdmMfzeeWr" target="_blank" class="version-btn">
+          Spotify
+          <span>Version idk — Size: 177,267 KB — Released — idk</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/uc?export=download&id=1iGyW4Ati8uQWEqSRG9vPhigaMMV4FO2_" target="_blank" class="version-btn">
+          Python 3.13
+          <span>Version idk — Size: 40,816 KB — Released — idk</span>
+        </a>
+      </li>
+    </ul>
+
+    <div style="text-align:center; margin-top:30px;">
+      <a href="https://nebula-vault.github.io/Hub/" class="version-btn">← Back to Hub</a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Nebula Hub — All Rights Reserved
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width - canvas.width / 2,
+        y: Math.random() * canvas.height - canvas.height / 2,
+        z: Math.random() * canvas.width
+      });
+    }
+
+    function draw() {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "white";
+      for (let star of stars) {
+        star.z -= 2;
+        if (star.z <= 0) star.z = canvas.width;
+
+        let k = 128.0 / star.z;
+        let x = star.x * k + canvas.width / 2;
+        let y = star.y * k + canvas.height / 2;
+
+        if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+
+        let size = (1 - star.z / canvas.width) * 3;
+        ctx.fillRect(x, y, size, size);
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
