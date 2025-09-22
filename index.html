@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nebula Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://raw.githubusercontent.com/Nebula-Vault/Hub/refs/heads/main/Icon.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow-x: hidden;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* Starfield canvas */
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      z-index: 100;
+      background: rgba(0,0,0,0.4); /* no blur now */
+    }
+
+    header h1 {
+      font-size: 2rem;
+      background: linear-gradient(90deg, #7b2ff7, #f107a3, #2bd2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: nebulaGlow 5s infinite alternate;
+    }
+
+    header nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: #ff6fd8;
+    }
+
+    /* Hero section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 4rem;
+      background: linear-gradient(270deg, #2bd2ff, #7b2ff7, #ff6fd8, #2bd2ff);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 10s ease infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.6;
+      opacity: 0.85;
+      animation: fadeInUp 2s ease-out forwards;
+      z-index: 2;
+    }
+
+    /* Floating nebula circles */
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      animation: floaty 20s infinite alternate ease-in-out;
+    }
+    .nebula.one { width: 400px; height: 400px; background: #7b2ff7; top: -50px; left: -100px; }
+    .nebula.two { width: 500px; height: 500px; background: #2bd2ff; bottom: -150px; right: -100px; animation-delay: 5s; }
+    .nebula.three { width: 300px; height: 300px; background: #ff6fd8; top: 200px; right: 200px; animation-delay: 10s; }
+
+    /* Keyframes */
+    @keyframes nebulaGlow {
+      from { text-shadow: 0 0 10px #7b2ff7, 0 0 20px #2bd2ff; }
+      to { text-shadow: 0 0 30px #ff6fd8, 0 0 60px #7b2ff7; }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes floaty {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-50px) translateX(30px); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 20px;
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+      margin-top: -2px;
+    }
+
+    section h3 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ff6fd8, #7b2ff7, #2bd2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 30px;
+      transition: transform 0.4s, box-shadow 0.4s;
+      box-shadow: 0 0 20px rgba(123,47,247,0.2);
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 40px rgba(255,111,216,0.6);
+    }
+
+    .card h4 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      color: #2bd2ff;
+    }
+
+    .card p {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 50px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Starfield -->
+  <canvas id="starfield"></canvas>
+
+  <header>
+    <h1>Nebula Hub</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero with projects inside -->
+    <section class="hero">
+      <h2>Enter the Nebula</h2>
+      <p>Where cosmic creativity meets infinite interaction. Welcome to Nebula Hub, your gateway to vibrant digital experiences wrapped in galaxies of motion.</p>
+
+      <!-- Projects moved here -->
+      <div id="projects" class="card-grid" style="margin-top:60px;">
+        <div class="card">
+		  <a href="MinecraftBedrockVersions.html" style="text-decoration:none; color:inherit;">
+          <h4>Minecraft Bedrock Versions</h4>
+          <p>Minecraft Bedrock Versions APPX</p>
+        </div>
+        <div class="card">
+		  <a href="MinecraftBedrockTexturePacks.html" style="text-decoration:none; color:inherit;">
+          <h4>Minecraft Bedrock Texture Packs</h4>
+          <p>Minecraft Bedrock Texture Packs MCPACK</p>
+        </div>
+        <div class="card">
+		  <a href="project3.html" style="text-decoration:none; color:inherit;">
+          <h4>Minecraft Java Versions</h4>
+          <p>This Might not work</p>
+        </div>
+        <div class="card">
+		  <a href="project4.html" style="text-decoration:none; color:inherit;">
+          <h4>Something else</h4>
+          <p>2cool 4 me</p>
+        </div>
+      </div>
+
+      <div class="nebula one"></div>
+      <div class="nebula two"></div>
+      <div class="nebula three"></div>
+    </section>
+
+    <section id="about">
+      <h3>About</h3>
+      <p>Nebula Hub is a playground of design and technology. Styled with cosmic gradients, animated with starry dynamics, and built for those who love color, motion, and immersion.</p>
+    </section>
+
+    <section id="features">
+      <h3>Features</h3>
+      <p>Seamless animations, vibrant nebula-inspired palettes, and a fully responsive layout make Nebula Hub shine across all devices.</p>
+    </section>
+
+    <section id="contact">
+      <h3>Contact</h3>
+      <p>Reach out across the stars: nebula@hub.com</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Nebula Hub — All Rights Reserved
+  </footer>
+
+  <!-- Starfield Script -->
+  <script>
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width - canvas.width / 2,
+        y: Math.random() * canvas.height - canvas.height / 2,
+        z: Math.random() * canvas.width
+      });
+    }
+
+    function draw() {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "white";
+      for (let star of stars) {
+        star.z -= 2;
+        if (star.z <= 0) star.z = canvas.width;
+
+        let k = 128.0 / star.z;
+        let x = star.x * k + canvas.width / 2;
+        let y = star.y * k + canvas.height / 2;
+
+        if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+
+        let size = (1 - star.z / canvas.width) * 3;
+        ctx.fillRect(x, y, size, size);
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
